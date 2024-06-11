@@ -141,7 +141,6 @@ function checkForDuplicates(directory, name, isFile) {
  * function to rename the folder
  */
 function renameFolder(req, res) {
-  console.log("rename folder");
   var oldName =
     req.body.data[0].name.split("/")[
       req.body.data[0].name.split("/").length - 1
@@ -205,7 +204,6 @@ function renameFolder(req, res) {
       .replace(/\\/g, "/");
     var oldDirectoryPath = path.join(contentRootPath + sanitizedPath, oldName);
     var newDirectoryPath = path.join(contentRootPath + sanitizedPath, newName);
-    console.log(oldDirectoryPath, newDirectoryPath);
     if (
       checkForDuplicates(
         contentRootPath + sanitizedPath,
@@ -1360,7 +1358,7 @@ app.post(
             );
             const fullPath = (contentRootPath + filepath + folders[i]).replace(
               /[\\/]/g,
-              "\\"
+              "/"
             );
             const isValidatePath = fullPath == newDirectoryPath ? true : false;
             if (!isValidatePath) {
@@ -1407,7 +1405,7 @@ app.post(
             );
             const fullPath = (contentRootPath + filepath + fileName[i]).replace(
               /[\\/]/g,
-              "//"
+              "/"
             );
             const isValidatePath = fullPath == resolvedPath ? true : false;
             if (!isValidatePath) {
