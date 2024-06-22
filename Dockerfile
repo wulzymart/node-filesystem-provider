@@ -26,7 +26,6 @@ RUN --mount=type=bind,source=package.json,target=package.json \
     yarn install --production --frozen-lockfile
 
 # Run the application as a non-root user.
-USER node
 
 # Copy the rest of the source files into the image.
 COPY . .
@@ -37,4 +36,3 @@ EXPOSE 8090
 # Run the application.
 CMD yarn start
 
-VOLUME [ "/usr/src/files" ]
