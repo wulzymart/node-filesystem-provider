@@ -22,6 +22,7 @@ var cors = require("cors");
 const pattern = /(\.\.\/)/g;
 
 var contentRootPath = process.argv[2];
+console.log(contentRootPath);
 
 app.use(
   bodyParser.urlencoded({
@@ -1385,6 +1386,7 @@ app.post(
             }
             filepath += folders[i] + "/";
           }
+          console.log("filepath", filepath);
           fs.rename(
             "./" + uploadedFileName,
             path.join(contentRootPath, filepath + uploadedFileName),
@@ -1417,15 +1419,20 @@ app.post(
               res.set("Content-Type", "application/json");
               return res.json(response);
             }
-            fs.rename(
+            const name = fileName[i];
+            fs.copyFile(
               "./" + fileName[i],
               path.join(contentRootPath, filepath + fileName[i]),
               function (err) {
+                console.log(name);
                 if (err) {
+                  console.log("error", err);
                   if (err.code != "EBUSY") {
                     errorValue.message = err.message;
                     errorValue.code = err.code;
                   }
+                } else {
+                  fs.rmSync("./" + name);
                 }
               }
             );

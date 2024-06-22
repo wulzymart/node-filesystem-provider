@@ -9,13 +9,22 @@
 # https://github.com/docker/awesome-compose
 services:
   server:
+    restart: always
     build:
       context: .
+      target: dev
+    develop:
+      watch:
+        - path: ./
+          action: sync
+          target: /usr/src/app/
     environment:
       NODE_ENV: production
     ports:
       - 8090:8090
-    volumes: ["~/file:/file"]
+    volumes: ["files:/root/files"]
+volumes:
+  files:
 # The commented out section below is an example of how to define a PostgreSQL
 # database that your application can use. `depends_on` tells Docker Compose to
 # start the database before your application. The `db-data` volume persists the

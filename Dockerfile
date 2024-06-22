@@ -8,7 +8,7 @@
 
 ARG NODE_VERSION=20.14.0
 
-FROM node:${NODE_VERSION}-alpine
+FROM node:${NODE_VERSION}-alpine AS base
 
 # Use production node environment by default.
 ENV NODE_ENV production
@@ -23,9 +23,8 @@ WORKDIR /usr/src/app
 RUN --mount=type=bind,source=package.json,target=package.json \
     --mount=type=bind,source=yarn.lock,target=yarn.lock \
     --mount=type=cache,target=/root/.yarn \
-    yarn install --production --frozen-lockfile
+    yarn install
 
-# Run the application as a non-root user.
 
 # Copy the rest of the source files into the image.
 COPY . .
@@ -33,6 +32,13 @@ COPY . .
 # Expose the port that the application listens on.
 EXPOSE 8090
 
+
+FROM base AS dev
+RUN yarn global add nodemon
+
+CMD ["yarn", "dev"]
+
+FROM base AS final
 # Run the application.
 CMD yarn start
 
