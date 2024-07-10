@@ -35,8 +35,7 @@
     "gulp": "^4.0.2",
     "jshint-stylish": "^2.2.1",
     "multer": "^1.4.1",
-    "path": "^0.12.7",
-    "yargs": "^14.2.0"
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "gulp-jshint": "^2.1.0",

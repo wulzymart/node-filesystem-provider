@@ -1,6 +1,5 @@
 /*jshint esversion: 8 */
 var express = require("express");
-var yargs = require("yargs");
 var app = express();
 const rateLimit = require("express-rate-limit");
 // Enable rate limiting
