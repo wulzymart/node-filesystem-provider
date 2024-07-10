@@ -22,7 +22,7 @@ var cors = require("cors");
 const pattern = /(\.\.\/)/g;
 
 var contentRootPath = process.argv[2];
-console.log(contentRootPath);
+console.log("root check", contentRootPath);
 
 app.use(
   bodyParser.urlencoded({
@@ -2005,6 +2005,10 @@ app.post("/", (req, res) => {
   } catch (error) {
     console.log(error);
   }
+});
+
+app.get("/", (req, res) => {
+  res.send("Hello World! I am alive");
 });
 /**
  * Server serving port

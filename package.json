@@ -48,7 +48,7 @@
   },
   "scripts": {
     "test": "gulp lint",
-    "start": "node filesystem-server.js ~/files",
+    "start": "pm2 -i 3 start filesystem-server.js -- ~/files",
     "dev": "nodemon filesystem-server.js ~/files",
     "ci-publish": "gulp publish"
   }
