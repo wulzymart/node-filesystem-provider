@@ -40,5 +40,5 @@ CMD ["yarn", "dev"]
 
 FROM base AS final
 # Run the application.
-CMD ["node", "filesystem-server.js", "~/files"]
+CMD ["yarn", "start"]
 
