@@ -39,7 +39,6 @@ RUN yarn global add nodemon
 CMD ["yarn", "dev"]
 
 FROM base AS final
-RUN yarn global add pm2
 # Run the application.
-CMD yarn start
+CMD ["node", "filesystem-server.js", "~/files"]
 
