@@ -2,6 +2,7 @@
 var express = require("express");
 var app = express();
 const rateLimit = require("express-rate-limit");
+const maxSize = 10 * 1024 * 1024;
 // Enable rate limiting
 const limiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minutes
@@ -1210,6 +1211,9 @@ const multerConfig = {
     //specify destination
     destination: function (req, file, next) {
       next(null, "./");
+    },
+    limits: {
+      fileSize: maxSize,
     },
 
     //specify the filename to be unique
